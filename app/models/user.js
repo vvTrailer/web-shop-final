@@ -13,8 +13,6 @@ var userSchema = new Schema({
 	country: String,
 	isAdmin: Boolean,
 	orders: []
-
-
 });
 
 userSchema.pre('save', function(next) {
