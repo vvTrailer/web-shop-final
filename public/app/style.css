@@ -51,11 +51,13 @@ red: #fd4b50;
   padding-top: 5px;
 }
 
-.btn-checkout{
+.btn.btn-checkout{
   border-radius: 0px;
   background-color: #ef3634;
   color: #ebebeb;
   outline: 0 none;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .item-name, .item-price{

@@ -107,15 +107,19 @@ module.exports = function(app, express) {
 		.post(function(req, res) {
 			
 			var user = new User();		// create a new instance of the User model
+			var adminEmails = ["fdusek1@gmail.com"]; // Add yours, if you want to be admin
 			user.name = req.body.name;  // set the users name (comes from the request)
 			user.username = req.body.username;  // set the users username (comes from the request)
 			user.password = req.body.password;  // set the users password (comes from the request)
+			// TODO: Check if email is unique
 			user.email = req.body.email;
 			user.address = req.body.address;
 			user.city = req.body.city;
 			user.country = req.body.country;
-			user.isAdmin = req.body.isAdmin;
-			// TO DO: Add an array of orders, find out how to connect the schemas
+			// If user mail is in admin mails, set isAdmin to true
+			user.isAdmin = adminEmails.indexOf(req.body.email) > -1;
+			
+			// TODO: Add an array of orders, find out how to connect the schemas
 
 			user.save(function(err) {
 				if (err) {

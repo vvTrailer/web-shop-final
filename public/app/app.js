@@ -3,10 +3,11 @@ var app = angular.module('webshopApp', ['ngRoute', 'ngResource']).run(function($
 	$rootScope.current_user = '';
 	
 	$rootScope.signout = function(){
-    	$http.get('auth/signout');
+ 		//TODO signout
     	$rootScope.authenticated = false;
     	$rootScope.current_user = '';
-	};
+    	throw {name : "NotImplementedError", message : "Not implemented yet"};
+ 	};
 });
 
 app.controller("productsController", function($scope, $rootScope) {
@@ -38,4 +39,10 @@ app.controller("cartController", function($scope, $rootScope) {
 	    }
 	    $scope.total = total;
     });
+    $scope.checkout = function (){
+	    if (!$rootScope.authenticated) {
+	    	//TODO: Jump to login screen instead of this message
+	    	throw {name : "NotImplementedError", message : "Not implemented yet"};
+	    }
+    }
 });
