@@ -2,7 +2,7 @@
 Colors
 darkblack: #2a2927;
 lightblack: #4f4f4f;
-whitesmoke: #f7f7f7;
+whitesmoke: #ebebeb;
 red: #fd4b50;
 */
 
@@ -21,13 +21,13 @@ red: #fd4b50;
 }
 
 .btn-login{
-	width: 100%;
-    padding-top: 10px;
-    background-color: #4f4f4f;
-    padding-bottom: 10px;
-    border: 0px;
-    border-radius: 0px;
-    color: #f7f7f7;
+  width: 100%;
+  padding-top: 10px;
+  background-color: #4f4f4f;
+  padding-bottom: 10px;
+  border: 0px;
+  border-radius: 0px;
+  color: #f7f7f7;
 }
 
 .title-cart{
@@ -39,10 +39,23 @@ red: #fd4b50;
 }
 
 .cart-container{
-	color: #f7f7f7;
+	color: #ebebeb;
 	list-style: none;	
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.cart-total{
+  border-top: 1px solid #f7f7f7;
+  margin-top: 15px;
+  padding-top: 5px;
+}
+
+.btn-checkout{
+  border-radius: 0px;
+  background-color: #ef3634;
+  color: #ebebeb;
+  outline: 0 none;
 }
 
 .item-name, .item-price{
@@ -60,17 +73,24 @@ red: #fd4b50;
 }
 
 .card {
-  margin-top: 10px;
-  box-sizing: border-box;
-  border-radius: 2px;
-  background-clip: padding-box;
-  width: 200px;
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-clip: padding-box;
+    width: 200px;
+    margin: 15px;
+    height: 400px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
 }
+
 .card span.card-title {
     color: #2a2927;
     font-size: 20px;
     font-weight: 300;
     text-transform: uppercase;
+    padding-bottom: 5px;
 }
 
 .card .card-image {
@@ -82,6 +102,8 @@ red: #fd4b50;
   background-clip: padding-box;
   position: relative;
   z-index: -1;
+  height: 200px;
+  margin: auto;
 }
 .card .card-image span.card-title {
   /*position: absolute;
@@ -99,13 +121,15 @@ red: #fd4b50;
   margin: 0;
   color: inherit;
 }
-.card .card-content span.card-title {
-  line-height: 48px;
-}
 .card .card-action {
-  border-top: 1px solid rgba(160, 160, 160, 0.2);
-  padding: 16px;
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 16px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
 }
+
 .card .card-action a {
   color: #ffab40;
   margin-right: 16px;
