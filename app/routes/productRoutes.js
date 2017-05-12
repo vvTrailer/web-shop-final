@@ -11,11 +11,11 @@ module.exports = function(app, express) {
 		product.image = req.body.image; // This is just a link for now
 		product.price = req.body.price;
 
-		product.save(function(err, doc) {
+		product.save(function(err, obj) {
 			if (err) {
 				return res.send(err);
 			}
-			res.json({ message: 'Product created!', object: doc });
+			res.json({ message: 'Product created!', object: obj });
 		});
 	})		
 	.get(function(req, res) {
@@ -38,7 +38,14 @@ module.exports = function(app, express) {
 			}
 			res.json({ message: 'Product deleted!' })
 		});
-	})
+	}).get(function(req, res) {
+		Product.find({_id: req.params.id}, function(err, products) {
+			if (err) {
+				res.send(err);
+			}
+			res.json(products);
+		});
+	});
 
 	return apiRouter;
 }

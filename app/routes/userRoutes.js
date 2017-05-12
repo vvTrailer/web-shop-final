@@ -115,7 +115,6 @@ module.exports = function(app, express) {
 			user.name = req.body.name;  // set the users name (comes from the request)
 			user.username = req.body.username;  // set the users username (comes from the request)
 			user.password = req.body.password;  // set the users password (comes from the request)
-			// TODO: Check if email is unique
 			user.email = req.body.email;
 			user.address = req.body.address;
 			user.city = req.body.city;

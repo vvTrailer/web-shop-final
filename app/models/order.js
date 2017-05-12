@@ -3,10 +3,9 @@ var Schema       = mongoose.Schema;
 
 
 var orderSchema = new Schema({
-		product: [],
+		products: [],
 		submitDate: { type: Date, default: Date.now},
 		status: String
-
 });
 
 module.exports = mongoose.model('Order', orderSchema);
