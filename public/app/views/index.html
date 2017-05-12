@@ -12,9 +12,9 @@
 	<body ng-app="webshopApp">
 		<div class="container-fluid">
 		  <div class="row">
-		     <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10" >
-		      <nav class="navbar navbar-default navbar-fixed-side" ng-controller="cartController">
-				<a class="btn btn-default btn-login" href="#" ng-click>Log in <span class="tomato-color">/</span> Register</a>
+		     <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10" ng-controller="cartController">
+		      <nav class="navbar navbar-default navbar-fixed-side">
+				<a class="btn btn-default btn-login" href="#">Log in <span class="tomato-color">/</span> Register</a>
 				<h3 class="title-cart">Shopping cart</h3>
 				<ul class="cart-container"  ng-repeat="product in cart">
 					<li class="cart-item">
@@ -30,7 +30,7 @@
 						</div>
 					</li>
 				</ul>
-				<button class="btn btn-checkout" ng-if="total > 0" ng-click="checkout()">Checkout &rarr;</button>
+				<button class="btn btn-checkout" ng-if="total > 0">Checkout &rarr;</button>
 		      </nav>
 		    </div>
 		    <div class="col-sm-9 col-lg-10 col-sm-pull-3 col-lg-pull-2 product-container" ng-controller="productsController">
