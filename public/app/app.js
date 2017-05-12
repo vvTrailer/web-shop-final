@@ -9,12 +9,14 @@ var app = angular.module('webshopApp', ['ngRoute', 'ngResource']).run(function($
 	};
 });
 
-app.controller("productsController", function($scope, $rootScope) {
-    $scope.products = [
-	    {"id": "a", "name": "Apple", "description": "Really tasty apple. You should buy it.", "price": 150, "image": "https://upload.wikimedia.org/wikipedia/commons/0/07/Honeycrisp-Apple.jpg"},
-    	{"id": "b", "name": "Pear", "description": "You can make a pie with it.", "price": 100, "image": "https://upload.wikimedia.org/wikipedia/commons/6/61/Alexander_Lucas_10.10.10.jpg"},
-    	{"id": "c", "name": "Banana", "description": "The ultimate fruit!", "price": 999, "image": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"}
-    ];
+app.factory("Product", function($resource) {
+  return $resource("/api/products/:id");
+});
+
+app.controller("productsController", function($scope, $rootScope, Product) {
+    Product.query(function(data) {
+        $scope.products = data;
+    });
     $scope.addToCart = function (index){
 	    $rootScope.$broadcast('addToCart', $scope.products[index]);
     };
