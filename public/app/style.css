@@ -1,0 +1,142 @@
+/*
+Colors
+darkblack: #2a2927;
+lightblack: #4f4f4f;
+whitesmoke: #ebebeb;
+red: #fd4b50;
+*/
+
+.navbar-fixed-side{
+    height: 100vh;
+    border-radius: 0px;
+    margin: 0 -15px;
+    border: 0px;
+    background-color: #2a2927;
+    text-align: center;
+}
+
+.btn-login:hover{
+    background-color: #4f4f4f;
+    color: #f7f7f7;
+}
+
+.btn-login{
+  width: 100%;
+  padding-top: 10px;
+  background-color: #4f4f4f;
+  padding-bottom: 10px;
+  border: 0px;
+  border-radius: 0px;
+  color: #f7f7f7;
+}
+
+.title-cart{
+	color: #f7f7f7;
+}
+
+.tomato-color{
+	color: #fd4b50;
+}
+
+.cart-container{
+	color: #ebebeb;
+	list-style: none;	
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cart-total{
+  border-top: 1px solid #f7f7f7;
+  margin-top: 15px;
+  padding-top: 5px;
+}
+
+.btn-checkout{
+  border-radius: 0px;
+  background-color: #ef3634;
+  color: #ebebeb;
+  outline: 0 none;
+}
+
+.item-name, .item-price{
+	display: inline-block;
+}
+.item-name{
+	float: left;
+}
+.item-price{
+	float: right;
+}
+
+.card {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+
+.card {
+    margin-top: 10px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-clip: padding-box;
+    width: 200px;
+    margin: 15px;
+    height: 400px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+}
+
+.card span.card-title {
+    color: #2a2927;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.card .card-image {
+  position: relative;
+  overflow: hidden;
+}
+.card .card-image img {
+  border-radius: 2px 2px 0 0;
+  background-clip: padding-box;
+  position: relative;
+  z-index: -1;
+  height: 200px;
+  margin: auto;
+}
+.card .card-image span.card-title {
+  /*position: absolute;
+  bottom: 0;
+  left: 0;*/
+  padding: 16px;
+}
+.card .card-content {
+  padding: 16px;
+  border-radius: 0 0 2px 2px;
+  background-clip: padding-box;
+  box-sizing: border-box;
+}
+.card .card-content p {
+  margin: 0;
+  color: inherit;
+}
+.card .card-action {
+    border-top: 1px solid rgba(160, 160, 160, 0.2);
+    padding: 16px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.card .card-action a {
+  color: #ffab40;
+  margin-right: 16px;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+.card .card-action a:hover {
+  color: #ffd8a6;
+  text-decoration: none;
+}
