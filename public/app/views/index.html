@@ -11,60 +11,9 @@
 	</head>
 	<body ng-app="webshopApp">
 		<div class="container-fluid">
-		  <div class="row">
-		     <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10" ng-controller="cartController">
-		      <nav class="navbar navbar-default navbar-fixed-side">
-				<a class="btn btn-default btn-login" href="#">Log in <span class="tomato-color">/</span> Register</a>
-				<h3 class="title-cart">Shopping cart</h3>
-				<ul class="cart-container"  ng-repeat="product in cart">
-					<li class="cart-item">
-						<div class="item-data clearfix">
-							<div class="item-name">{{ product.name }} <span ng-show="product.amount > 1">({{product.amount}}x)</span></div>
-							<div class="item-price">{{ product.price }} DKK</div>
-						</div>
-					</li>
-					<li class="cart-item cart-total" ng-if="$last">
-						<div class="item-data clearfix">
-							<div class="item-name">Total</div>
-							<div class="item-price">{{ total }} DKK</div>
-						</div>
-					</li>
-				</ul>
-				<button class="btn btn-checkout" ng-if="total > 0">Checkout &rarr;</button>
-		      </nav>
-		    </div>
-		    <div class="col-sm-9 col-lg-10 col-sm-pull-3 col-lg-pull-2 product-container" ng-controller="productsController">
-			    <div class="card" ng-repeat="product in products" >
-	                <div class="card-image">
-	                    <img class="img-responsive" ng-src="{{ product.image }}">
-	                </div>
-	                
-	                <div class="card-content">
-	                    <span class="card-title">{{ product.name }}</span>
-	                    <p>{{ product.description }}</p>
-	                </div>
-	                
-	                <div class="card-action">
-	                    <a href="#" ng-click="addToCart($index)">Buy for {{ product.price }} DKK</a>
-	                </div>
-	            </div>
-		    </div>
+		  <div class="row" ng-view>
+
 		  </div>
 		</div>
-<!-- 		<div id='main' class="container">
-			<nav class="navbar-fluid navbar-default navbar-fixed-top">
-				<div class="container">
-					    <a class="navbar-brand" href="#"> Chirp! </a>
-					    <p class="navbar-text"> Learn the MEAN stack by building this tiny app</p>
-					    <p class="navbar-right navbar-text" ng-hide="authenticated"><a href="#/login">Login</a> or <a href="#/register">Register</a></p>
-					    <p class="navbar-right navbar-text" ng-show="authenticated"><a href="#" ng-click="signout()">Logout</a></p>
-					    <p class="navbar-right navbar-text" ng-show="authenticated">Signed in as {{current_user}}</p>		
-				</div>
-			</nav>
-			<div class="col-md-offset-2 col-md-8">
-				<div ng-view>
-				</div>
-			</div>
-		</div> -->
 	</body>
 </html>
