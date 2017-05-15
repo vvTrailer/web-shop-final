@@ -50,7 +50,8 @@ module.exports = function(app, express) {
 	        res.json({
 	          success: true,
 	          message: 'Enjoy your token!',
-	          token: token
+	          token: token,
+	          user: user
 	        });
 	      }   
 
@@ -131,9 +132,17 @@ module.exports = function(app, express) {
 					else 
 						return res.send(err);
 				}
+				var token = jwt.sign({
+		        	name: user.name,
+		        	email: user.email
+		        }, superSecret, {
+		          expiresIn: 4000
+		        });
 
+				//dont send back password
+				user.password = '';
 				// return a message
-				res.json({ message: 'User created!' });
+				res.json({ message: 'User created!', token: token, user: user, success: false });
 			});
 
 		})
