@@ -11,12 +11,12 @@ module.exports = function(app, express) {
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
-		console.log(req.body.username);
+		console.log(req.body.email);
 
 	  // find the user
 	  User.findOne({
-	    username: req.body.username
-	  }).select('name username password').exec(function(err, user) {
+	    email: req.body.email
+	  }).select('name email password').exec(function(err, user) {
 
 	    if (err) throw err;
 
@@ -41,7 +41,7 @@ module.exports = function(app, express) {
 	        // create a token
 	        var token = jwt.sign({
 	        	name: user.name,
-	        	username: user.username
+	        	email: user.email
 	        }, superSecret, {
 	          expiresIn: 4000
 	        });
@@ -113,7 +113,6 @@ module.exports = function(app, express) {
 			var user = new User();		// create a new instance of the User model
 			var adminEmails = ["fdusek1@gmail.com"]; // Add yours, if you want to be admin
 			user.name = req.body.name;  // set the users name (comes from the request)
-			user.username = req.body.username;  // set the users username (comes from the request)
 			user.password = req.body.password;  // set the users password (comes from the request)
 			user.email = req.body.email;
 			user.address = req.body.address;
@@ -128,7 +127,7 @@ module.exports = function(app, express) {
 				if (err) {
 					// duplicate entry
 					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A user with that username already exists. '});
+						return res.json({ success: false, message: 'A user with that email already exists. '});
 					else 
 						return res.send(err);
 				}
@@ -171,7 +170,7 @@ module.exports = function(app, express) {
 
 				// set the new user information if it exists in the request
 				if (req.body.name) user.name = req.body.name;
-				if (req.body.username) user.username = req.body.username;
+				if (req.body.email) user.email = req.body.email;
 				if (req.body.password) user.password = req.body.password;
 
 				// save the user
