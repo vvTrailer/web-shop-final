@@ -1,9 +1,16 @@
 var User       = require('../models/user');
 var jwt        = require('jsonwebtoken');
-var config     = require('../../config');
+var configSecret     = require('../../config-secret');
+
+try {
+	var configSecret = require('../../config-secret'); // use it for later
+} catch (ex) {
+	configSecret["secret"] = process.env.SECRET;
+	configSecret["database"] = process.env.DATABASE;
+}
 
 // super secret for creating tokens
-var superSecret = config.secret;
+var superSecret = configSecret.secret;
 
 module.exports = function(app, express) {
 
