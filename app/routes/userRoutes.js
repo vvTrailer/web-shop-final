@@ -1,6 +1,6 @@
 var User       = require('../models/user');
 var jwt        = require('jsonwebtoken');
-var configSecret     = require('../../config-secret');
+var configSecret     = {};
 
 try {
 	var configSecret = require('../../config-secret'); // use it for later
