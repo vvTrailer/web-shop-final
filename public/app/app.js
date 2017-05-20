@@ -1,7 +1,9 @@
 var app = angular.module('webshopApp', ['ngRoute', 'ngResource']).run(function($rootScope) {
 	$rootScope.authenticated = false;
 	$rootScope.current_user = '';
-	
+	$rootScope.cart = [];
+    $rootScope.total = 0;
+
 	$rootScope.signout = function(){
     	$http.get('auth/signout');
     	$rootScope.authenticated = false;
@@ -13,33 +15,30 @@ app.factory("Product", function($resource) {
   return $resource("/api/products/:id");
 });
 
-app.controller("productsController", function($scope, $rootScope, Product) {
+app.controller("mainController", function($scope, $rootScope, Product) {
     Product.query(function(data) {
         $scope.products = data;
     });
-    $scope.addToCart = function (index){
-	    $rootScope.$broadcast('addToCart', $scope.products[index]);
-    };
-});
 
-app.controller("cartController", function($scope, $rootScope) {
-    $scope.cart = [];
-    $scope.total = 0;
-    $rootScope.$on('addToCart', function (context, product) {
-        productIndex = $scope.cart.indexOf(product);
+    $scope.addToCart = function (index){
+        product = $scope.products[index];
+        productIndex = $rootScope.cart.map(function(e) { return e["_id"]; }).indexOf(product["_id"]);
         if (productIndex == -1){
         	product["amount"] = 1;
-			$scope.cart.push(product);        	
+			$rootScope.cart.push(product);
+            console.log("pushing new product to cart");        	
         } else {
-        	$scope.cart[productIndex]["amount"] += 1;
+        	$rootScope.cart[productIndex]["amount"] += 1;
+            console.log("increasing count of the product by 1");
+            console.log(product);
         };
 
 	    var total = 0;
-	    for ( var i = 0, _len = $scope.cart.length; i < _len; i++ ) {
-	        total += $scope.cart[i]["amount"] * $scope.cart[i]["price"];
+	    for ( var i = 0, _len = $rootScope.cart.length; i < _len; i++ ) {
+	        total += $rootScope.cart[i]["amount"] * $rootScope.cart[i]["price"];
 	    }
-	    $scope.total = total;
-    });
+	    $rootScope.total = total;
+    };
 });
 
 app.controller('authController', function($scope, $http, $rootScope, $location){
