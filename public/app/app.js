@@ -15,14 +15,32 @@ app.factory("Product", function($resource) {
   return $resource("/api/products/:id");
 });
 
-app.controller("mainController", function($scope, $rootScope, Product) {
+app.controller("mainController", function($scope, $rootScope, $http, Product) {
     Product.query(function(data) {
         $scope.products = data;
     });
     $scope.authMessage = false;
+
+    function refreshCart(){
+        var total = 0;
+        for ( var i = 0, _len = $rootScope.cart.length; i < _len; i++ ) {
+            total += $rootScope.cart[i]["amount"] * $rootScope.cart[i]["price"];
+        }
+        $rootScope.total = total;
+    }
+
     $scope.checkout = function (){
+        //if (true){ // use this condition for testing order submission before the authentication is fully implemented
         if ($rootScope.authenticated){
-            console.log("Not implemented");
+            $http.post('/api/orders', {products: $rootScope.cart}).then(
+                function successCallback(reponse){
+                    $rootScope.cart = [];
+                    refreshCart();
+                }).catch(
+                function errorCallback(response) {
+                    console.log(response);
+                }
+            );
             $scope.authMessage = false;
         } else {
             $scope.authMessage = true; 
@@ -38,12 +56,7 @@ app.controller("mainController", function($scope, $rootScope, Product) {
         } else {
         	$rootScope.cart[productIndex]["amount"] += 1;
         };
-
-	    var total = 0;
-	    for ( var i = 0, _len = $rootScope.cart.length; i < _len; i++ ) {
-	        total += $rootScope.cart[i]["amount"] * $rootScope.cart[i]["price"];
-	    }
-	    $rootScope.total = total;
+        refreshCart();
     };
 });
 

@@ -6,7 +6,7 @@ module.exports = function(app, express) {
 	apiRouter.route('/orders').post(function(req, res) {
 		//TODO: make order belong to user
 		var order = new Order();
-		order.products = req.body;
+		order.products = req.body.products;
 		order.status = "confirmed";
 
 		order.save(function(err, obj) {
