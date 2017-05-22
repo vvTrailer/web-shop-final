@@ -104,6 +104,14 @@ red: #fd4b50;
     text-align: center;
 }
 
+@media only screen and (max-width:767px){
+  .navbar-fixed-side{
+      height: initial;
+      padding-bottom: 20px;
+  }
+}
+
+
 .btn-login:hover{
     background-color: #4f4f4f;
     color: #f7f7f7;
