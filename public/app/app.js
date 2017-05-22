@@ -19,6 +19,15 @@ app.controller("mainController", function($scope, $rootScope, Product) {
     Product.query(function(data) {
         $scope.products = data;
     });
+    $scope.authMessage = false;
+    $scope.checkout = function (){
+        if ($rootScope.authenticated){
+            console.log("Not implemented");
+            $scope.authMessage = false;
+        } else {
+            $scope.authMessage = true; 
+        }
+    };
 
     $scope.addToCart = function (index){
         product = $scope.products[index];
@@ -26,11 +35,8 @@ app.controller("mainController", function($scope, $rootScope, Product) {
         if (productIndex == -1){
         	product["amount"] = 1;
 			$rootScope.cart.push(product);
-            console.log("pushing new product to cart");        	
         } else {
         	$rootScope.cart[productIndex]["amount"] += 1;
-            console.log("increasing count of the product by 1");
-            console.log(product);
         };
 
 	    var total = 0;

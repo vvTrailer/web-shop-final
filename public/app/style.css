@@ -91,7 +91,6 @@ red: #fd4b50;
     margin-top: 10px;
 }
 
-
 /*  ********************************
     *             MAIN             *
     ********************************
@@ -122,6 +121,14 @@ red: #fd4b50;
 
 .title-cart{
 	color: #f7f7f7;
+}
+
+.login-message, .login-message a{
+  color: #f7f7f7;  
+}
+
+.login-message a{
+  text-decoration: underline;
 }
 
 .tomato-color{

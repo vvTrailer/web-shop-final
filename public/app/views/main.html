@@ -16,7 +16,11 @@
 				</div>
 			</li>
 		</ul>
-		<button class="btn btn-checkout" ng-if="total > 0">Checkout &rarr;</button>
+		<div ng-if="total > 0">
+			<button class="btn btn-checkout" ng-click="checkout()">Checkout &rarr;</button>
+			<br>
+			<span class="login-message" ng-if="(!authenticated && authMessage)">Please <a href="/#!/login">log in</a> first</span>
+		</div>
 	</nav>
 </div>
 <div class="col-sm-9 col-lg-10 col-sm-pull-3 col-lg-pull-2 product-container">
