@@ -65,31 +65,31 @@ app.controller('authController', function($scope, $http, $rootScope, $location){
     $scope.error_message = '';
     $rootScope.user = { name: '', password: '', email: '', address: '', city: '', country: ''};
 
-    $scope.login = function(){
-    $http.post('/api/authenticate', $scope.user).then(function(data){
-      if(data.state == 'success'){
-        $rootScope.authenticated = true;
-        $rootScope.user = data.user;
-        $rootScope.token = data.token;
-        $location.path('/');
-      }
-      else{
-        $scope.error_message = data.message;
-      }
-    });
+    $scope.authenticate = function(){
+        $http.post('/api/authenticate', $scope.login).then(function(data){
+            if(data.state == 'success'){
+                $rootScope.authenticated = true;
+                $rootScope.user = data.user;
+                $rootScope.token = data.token;
+                $location.path('/');
+            }
+            else{
+                $scope.error_message = data.message;
+            }
+        });
     };
 
     $scope.register = function(){
-    $http.post('/api/register', $scope.login).then(function(data){
-      if(data.state == 'success'){
-        $rootScope.authenticated = true;
-        $rootScope.user = data.user;
-        $rootScope.token = data.token;
-        $location.path('/');
-      }
-      else{
-        $scope.error_message = data.message;
-      }
-    });
+        $http.post('/api/register', $scope.user).then(function(data){
+            if(data.state == 'success'){
+                $rootScope.authenticated = true;
+                $rootScope.user = data.user;
+                $rootScope.token = data.token;
+                $location.path('/');
+            }
+            else{
+                $scope.error_message = data.message;
+            }
+        });
     };
 });
