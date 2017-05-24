@@ -104,10 +104,18 @@ red: #fd4b50;
     text-align: center;
 }
 
+.cart-fixed{
+  position: fixed;
+  height: 100vh;
+}
 @media only screen and (max-width:767px){
   .navbar-fixed-side{
       height: initial;
       padding-bottom: 20px;
+  }
+  .cart-fixed{
+    position: initial;
+    height: initial;
   }
 }
 

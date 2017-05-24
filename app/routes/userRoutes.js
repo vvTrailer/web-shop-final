@@ -18,7 +18,6 @@ module.exports = function(app, express) {
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
-		console.log(req.body.email);
 
 	  // find the user
 	  User.findOne({
@@ -115,7 +114,7 @@ module.exports = function(app, express) {
 	// ----------------------------------------------------
 	apiRouter.route('/users')
 
-		// create a user (accessed at POST http://localhost:8080/users)
+		// create a user (accessed at POST http://localhost:8080/api/users)
 		.post(function(req, res) {
 			
 			var user = new User();		// create a new instance of the User model
@@ -134,10 +133,12 @@ module.exports = function(app, express) {
 			user.save(function(err) {
 				if (err) {
 					// duplicate entry
-					if (err.code == 11000) 
-						return res.json({ success: false, message: 'A user with that email already exists. '});
-					else 
-						return res.send(err);
+					if (err.code == 11000) {
+						console.log(err);
+						return res.status(400).json({ success: false, message: 'A user with that email already exists. '});
+					} else { 
+						return res.status(400).send(err);
+					}
 				}
 				var token = jwt.sign({
 		        	name: user.name,
@@ -149,7 +150,7 @@ module.exports = function(app, express) {
 				//dont send back password
 				user.password = '';
 				// return a message
-				res.json({ message: 'User created!', token: token, user: user, success: false });
+				res.json({ message: 'User created!', token: token, user: user, success: true });
 			});
 
 		})
