@@ -108,6 +108,12 @@ red: #fd4b50;
   position: fixed;
   height: 100vh;
 }
+
+.product-container {
+    padding: 15px;
+    width: 75%;
+}
+
 @media only screen and (max-width:767px){
   .navbar-fixed-side{
       height: initial;
@@ -117,7 +123,14 @@ red: #fd4b50;
     position: initial;
     height: initial;
   }
+  .product-container {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+  }
 }
+
+
 
 
 .btn-login:hover{
