@@ -37,7 +37,7 @@ module.exports = function(app, express) {
         // find the user
         models.User.findOne({
             email: req.body.email
-        }).select('role email password').exec(function(err, user) {
+        }).select('role email password name address city country').exec(function(err, user) {
 
             if (err) throw err;
 
@@ -72,7 +72,8 @@ module.exports = function(app, express) {
                     res.json({
                         success: true,
                         message: 'Enjoy your token!',
-                        token: token
+                        token: token,
+                        user: user
                     });
                 }
 
