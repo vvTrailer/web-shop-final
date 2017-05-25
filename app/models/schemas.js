@@ -21,7 +21,7 @@ const orderSchema = new Schema({
 
 const Order = mongoose.model('Order', orderSchema);
 
-const userSchema = new Schema({
+var userSchema = new Schema({
 	name: String, 
 	password: { type: String, required: true, select: false },
 	email: { type: String, required: true},
@@ -31,8 +31,6 @@ const userSchema = new Schema({
 	role: String,
 	orders: [orderSchema]
 });
-
-var User = mongoose.model('User', userSchema);
 
 userSchema.pre('save', function(next) {
 	const user = this;
@@ -56,6 +54,8 @@ userSchema.methods.comparePassword = function(password) {
 
 	return bcrypt.compareSync(password, user.password);
 };
+
+var User = mongoose.model('User', userSchema);
 
 module.exports = {
 	Order: Order,
