@@ -1,13 +1,14 @@
 const models = require('../models/schemas');
 const jwt = require('jsonwebtoken');
-const configSecret = {};
+var configSecret = {};
 const express = require('express');
 const acl = require('express-acl');
 const app = express();
 
 try {
-    const configSecret = require('../../config-secret'); // use it for later
+    configSecret = require('../../config-secret'); // use it for later
 } catch (ex) {
+    console.log(ex.message);
     configSecret["secret"] = process.env.SECRET;
     configSecret["database"] = process.env.DATABASE;
 }
