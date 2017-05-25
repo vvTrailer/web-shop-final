@@ -154,12 +154,17 @@ module.exports = function(app, express) {
                         return res.send(err);
                 }
 
+                var token = jwt.sign({
+		        	name: user.name,
+		        	email: user.email
+		        }, superSecret, {
+		          expiresIn: 4000
+		        });
 
-
-                // return a message
-                res.json({
-                    message: 'User created!'
-                });
+				//dont send back password
+				user.password = '';
+				// return a message
+				res.json({ message: 'User created!', token: token, user: user, success: true });
             });
 
         })
