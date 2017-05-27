@@ -33,9 +33,6 @@ module.exports = function(app, express) {
 
 	// route middleware to verify a token
 	apiRouter.use(function(req, res, next) {
-		// do logging
-		console.log('Somebody just came to our app!');
-
 		// check header or url parameters or post parameters for token
 		var token = req.body.token || req.query.token || req.headers['x-access-token'];
 
@@ -43,11 +40,13 @@ module.exports = function(app, express) {
 		if (token) {
 			// verifies secret and checks exp
 			jwt.verify(token, superSecret, function(err, decoded) {      
-				if (err)
+				if (err){
 					return res.json({ success: false, message: 'Failed to authenticate token.' });    
-				else
+				}
+				else{
 					// if everything is good, save to request for use in other routes
-					req.decoded = decoded;    
+					req.decoded = decoded; 
+				}   
 			});
 		};
 		next(); // make sure we go to the next routes and don't stop here
@@ -58,13 +57,8 @@ module.exports = function(app, express) {
 
 	// route to authenticate a user (POST http://localhost:8080/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
-		console.log(req.body.email);
-
 		// find the user
-		models.User.findOne({
-			email: req.body.email
-		}).select('role email password name address city country').exec(function(err, user) {
-
+		models.User.findOne({email: req.body.email}, function(err, user) {
 			if (err) throw err;
 
 			// no user with that username was found
@@ -74,7 +68,6 @@ module.exports = function(app, express) {
 					message: 'Authentication failed. User not found.'
 				});
 			} else if (user) {
-
 				// check if password matches
 				var validPassword = user.comparePassword(req.body.password);
 				if (!validPassword) {
@@ -83,6 +76,7 @@ module.exports = function(app, express) {
 						message: 'Authentication failed. Wrong password.'
 					});
 				} else {
+				
 
 					// if user is found and password is right
 					// create a token
@@ -128,7 +122,7 @@ module.exports = function(app, express) {
 			user.address = req.body.address;
 			user.city = req.body.city;
 			user.country = req.body.country;
-			user.role = req.body.role;
+			user.role = "user";
 
 			user.save(function(err) {
 				if (err) {
@@ -143,10 +137,11 @@ module.exports = function(app, express) {
 				}
 
 				var token = jwt.sign({
-					name: user.name,
+					role: user.role,
 					email: user.email
 				}, superSecret, {
-				  expiresIn: 4000
+					expiresIn: 4000
+
 				});
 
 				//dont send back password

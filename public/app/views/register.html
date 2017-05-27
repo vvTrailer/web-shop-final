@@ -8,6 +8,7 @@
 	        <input type="text" ng-model="user.address" name="address" class="form-control" placeholder="Address" required>
 	        <input type="text" ng-model="user.city" name="city" class="form-control" placeholder="City" required>
 	        <input type="text" ng-model="user.country" name="country" class="form-control last-control" placeholder="Country" required>
+            <p class="error-message" style="color: red;"> {{ error_message }}</p>
 	        <button class="btn btn-lg btn-primary btn-block btn-square" type="submit">Register</button>
         </form>
     </div>

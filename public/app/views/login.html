@@ -3,6 +3,7 @@
         <form class="form-signin" ng-submit="authenticate()">
 	        <input type="text" ng-model="login.email" name="email" class="form-control" placeholder="Email" required autofocus>
 	        <input type="password" ng-model="login.password" name="password" class="form-control last-control" placeholder="Password" required>
+            <p class="error-message" style="color: red;"> {{ error_message }}</p>
 	        <button class="btn btn-lg btn-primary btn-block btn-square" type="submit">Log in</button>
         </form>
     </div>

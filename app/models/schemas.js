@@ -23,7 +23,7 @@ var Order = mongoose.model('Order', orderSchema);
 
 var userSchema = new Schema({
 	name: String, 
-	password: { type: String, required: true, select: false },
+	password: { type: String, required: true},
 	email: { type: String, required: true},
 	address: String,
 	city: String,
@@ -41,7 +41,6 @@ userSchema.pre('save', function(next) {
 	// generate the hash
 	bcrypt.hash(user.password, null, null, function(err, hash) {
 		if (err) return next(err);
-
 		// change the password to the hashed version
 		user.password = hash;
 		next();
