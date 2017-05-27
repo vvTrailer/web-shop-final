@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt-nodejs');
 
-const productSchema = new Schema({
+var productSchema = new Schema({
 		name: String,
 		description: String,
 		image: String,
@@ -10,16 +10,16 @@ const productSchema = new Schema({
 
 });
 
-const Product = mongoose.model('Product', productSchema);
+var Product = mongoose.model('Product', productSchema);
 
 
-const orderSchema = new Schema({
+var orderSchema = new Schema({
 		products: [productSchema],
 		submitDate: { type: Date, default: Date.now},
 		status: String
 });
 
-const Order = mongoose.model('Order', orderSchema);
+var Order = mongoose.model('Order', orderSchema);
 
 var userSchema = new Schema({
 	name: String, 
@@ -33,7 +33,7 @@ var userSchema = new Schema({
 });
 
 userSchema.pre('save', function(next) {
-	const user = this;
+	var user = this;
 
 	// hash the password only if the password has been changed or user is new
 	if (!user.isModified('password')) return next();
@@ -50,7 +50,7 @@ userSchema.pre('save', function(next) {
 
 // method to compare a given password with the database hash
 userSchema.methods.comparePassword = function(password) {
-	const user = this;
+	var user = this;
 
 	return bcrypt.compareSync(password, user.password);
 };
