@@ -112,6 +112,7 @@ red: #fd4b50;
 .product-container {
     padding: 15px;
     width: 75%;
+    position: relative;
 }
 
 @media only screen and (max-width:767px){
@@ -267,4 +268,32 @@ red: #fd4b50;
 .card .card-action a:hover {
   color: #ffd8a6;
   text-decoration: none;
+}
+
+.order-popup{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    text-align: center;
+    z-index: 1000000;
+    visibility: hidden;
+}
+
+.order-popup-animate{
+  animation-name: example;
+  animation-duration: 2s;
+}
+
+.order-popup p{
+  margin-top: 30vh;
+  font-size: 60px;
+  visibility: hidden;
+  font-weight: bold;
+}
+
+@keyframes example {
+    0%  {visibility: hidden; color: transparent; height: 0%}
+    10%  {background-color: #011627; color: white; visibility: visible; height: 100%}
+    60%  {background-color: #011627; color: white; visibility: visible; height: 100%}
+  100%  {visibility: hidden; color: transparent; height: 0%;}
 }

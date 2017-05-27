@@ -3,6 +3,7 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
         $scope.products = data;
     });
     $scope.authMessage = false;
+    $scope.thanksMessage = false;
 
     function refreshCart(){
         var total = 0;
@@ -24,6 +25,7 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
                     console.log(response);
                 }
             );
+            $scope.thanksMessage = true;
             $scope.authMessage = false;
         } else {
             $scope.authMessage = true; 
@@ -31,6 +33,7 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
     };
 
     $scope.addToCart = function (index){
+        $scope.thanksMessage = false;
         product = $scope.products[index];
         // make list of ids from list of products and get index of the required product
         productIndex = $rootScope.cart.map(function(e) { return e["_id"]; }).indexOf(product["_id"]); 

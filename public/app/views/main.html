@@ -1,6 +1,6 @@
  <div class="col-sm-3 col-lg-2 col-sm-push-9 col-lg-push-10 cart-fixed">
 	<nav class="navbar navbar-default navbar-fixed-side">
-		<a class="btn btn-default btn-login" href="/#!/login">Log in <span class="tomato-color">/</span> Register</a>
+		<a class="btn btn-default btn-login" ng-href="{{authenticated ? '/#!/' : '/#!/login'}}">{{ authenticated ? "Welcome, " + user.name : "Log in / Register"}}</a>
 		<h3 class="title-cart">Shopping cart</h3>
 		<ul class="cart-container"  ng-repeat="product in cart">
 			<li class="cart-item">
@@ -23,6 +23,10 @@
 		</div>
 	</nav>
 </div>
+<div class="order-popup" ng-class="thanksMessage ? 'order-popup-animate':''">
+	<p ng-class="thanksMessage ? 'order-popup-animate':''">Thanks for the order :)</p>
+</div>
+
 <div class="product-container">
     <div class="card" ng-repeat="product in products" >
         <div class="card-image">
