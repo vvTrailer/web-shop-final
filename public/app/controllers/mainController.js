@@ -3,6 +3,7 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
         $scope.products = data;
     });
     $scope.authMessage = false;
+    $scope.thanksMessage = false;
 
     function refreshCart(){
         var total = 0;
@@ -15,10 +16,11 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
     $scope.checkout = function (){
         //if (true){ // use this condition for testing order submission before the authentication is fully implemented
         if ($rootScope.authenticated){
-            $http.post('/api/orders', {products: $rootScope.cart}).then(
+            $http.post('/api/users/' + $rootScope.user["_id"] + '/orders', {products: $rootScope.cart, token: $rootScope.token}).then(
                 function successCallback(reponse){
                     $rootScope.cart = [];
                     refreshCart();
+                    $scope.thanksMessage = true;
                 }).catch(
                 function errorCallback(response) {
                     console.log(response);
@@ -31,8 +33,10 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
     };
 
     $scope.addToCart = function (index){
+        $scope.thanksMessage = false;
         product = $scope.products[index];
-        productIndex = $rootScope.cart.map(function(e) { return e["_id"]; }).indexOf(product["_id"]);
+        // make list of ids from list of products and get index of the required product
+        productIndex = $rootScope.cart.map(function(e) { return e["_id"]; }).indexOf(product["_id"]); 
         if (productIndex == -1){
         	product["amount"] = 1;
 			$rootScope.cart.push(product);

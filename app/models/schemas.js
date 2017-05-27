@@ -1,17 +1,35 @@
 var mongoose = require('mongoose');
-
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
+var productSchema = new Schema({
+		name: String,
+		description: String,
+		image: String,
+		price: String		
+
+});
+
+var Product = mongoose.model('Product', productSchema);
+
+
+var orderSchema = new Schema({
+		products: [productSchema],
+		submitDate: { type: Date, default: Date.now},
+		status: String
+});
+
+var Order = mongoose.model('Order', orderSchema);
+
 var userSchema = new Schema({
 	name: String, 
-	password: { type: String, required: true, select: false },
-	email: { type: String, required: true, index: { unique: true }},
+	password: { type: String, required: true},
+	email: { type: String, required: true},
 	address: String,
 	city: String,
 	country: String,
-	isAdmin: Boolean,
-	orders: []
+	role: String,
+	orders: [orderSchema]
 });
 
 userSchema.pre('save', function(next) {
@@ -23,7 +41,6 @@ userSchema.pre('save', function(next) {
 	// generate the hash
 	bcrypt.hash(user.password, null, null, function(err, hash) {
 		if (err) return next(err);
-
 		// change the password to the hashed version
 		user.password = hash;
 		next();
@@ -37,4 +54,10 @@ userSchema.methods.comparePassword = function(password) {
 	return bcrypt.compareSync(password, user.password);
 };
 
-module.exports = mongoose.model('User', userSchema);
+var User = mongoose.model('User', userSchema);
+
+module.exports = {
+	Order: Order,
+	User: User,
+	Product: Product
+};

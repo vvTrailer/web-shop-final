@@ -44,13 +44,9 @@ app.use(express.static(__dirname + '/public'));
 // ====================================
 
 // API ROUTES ------------------------
-var userRoutes = require('./app/routes/userRoutes')(app, express);
-var orderRoutes = require('./app/routes/orderRoutes')(app, express);
-var productRoutes = require('./app/routes/productRoutes')(app, express);
+var userRoutes = require('./app/routes/apiRoutes')(app, express);
 
 app.use('/api', userRoutes);
-app.use('/api', productRoutes);
-app.use('/api', orderRoutes);
 
 
 // MAIN CATCHALL ROUTE --------------- 
