@@ -20,12 +20,12 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
                 function successCallback(reponse){
                     $rootScope.cart = [];
                     refreshCart();
+                    $scope.thanksMessage = true;
                 }).catch(
                 function errorCallback(response) {
                     console.log(response);
                 }
             );
-            $scope.thanksMessage = true;
             $scope.authMessage = false;
         } else {
             $scope.authMessage = true; 
