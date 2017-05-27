@@ -211,6 +211,7 @@ module.exports = function(app, express) {
 		.post(function(req, res) {
 			var order = new models.Order();
 			order.status = "confirmed";
+			order.products = req.body.products;
 			models.User.findById(req.params.user_id, function(err, user) {
 
 				if (err)
