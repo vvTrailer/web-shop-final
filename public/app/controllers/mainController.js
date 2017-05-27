@@ -15,7 +15,7 @@ app.controller("mainController", function($scope, $rootScope, $http, Product) {
     $scope.checkout = function (){
         //if (true){ // use this condition for testing order submission before the authentication is fully implemented
         if ($rootScope.authenticated){
-            $http.post('/api/orders', {token: $rootScope.token}).then(
+            $http.post('/api/users/' + $rootScope.user["_id"] + '/orders', {token: $rootScope.token}).then(
                 function successCallback(reponse){
                     $rootScope.cart = [];
                     refreshCart();
