@@ -5,7 +5,9 @@ lightblack: #4f4f4f;
 whitesmoke: #ebebeb;
 red: #fd4b50;
 */
-
+a:hover{
+cursor: pointer;
+}
 /*  ********************************
     *           REGISTER           *
     ********************************
@@ -100,13 +102,14 @@ red: #fd4b50;
     border-radius: 0px;
     margin: 0 -15px;
     border: 0px;
-    background-color: #2a2927;
+    background-color: #919098;
     text-align: center;
 }
 
 .cart-fixed{
   position: fixed;
   height: 100vh;
+  top: 0px;
 }
 
 .product-container {
@@ -260,7 +263,7 @@ red: #fd4b50;
 }
 
 .card .card-action a {
-  color: #ffab40;
+  color: #919098;
   margin-right: 16px;
   transition: color 0.3s ease;
   text-transform: uppercase;
@@ -297,3 +300,46 @@ red: #fd4b50;
     60%  {background-color: #011627; color: white; visibility: visible; height: 100%}
   100%  {visibility: hidden; color: transparent; height: 0%;}
 }
+
+/*  ********************************
+    *           HEADER             *
+    ********************************
+ */
+
+
+h1, a, li, p {
+  font-family: Roboto, sans-serif;
+}
+.header-home-link:hover{
+  text-decoration: none;
+}
+
+.header-home-link h1 {
+  font-size: 26px;
+  background: #A5C4D4;
+  color: white;
+  padding: 40px 0 40px 30px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+.nav{
+  padding-left: 30px;
+}
+
+.nav a, .nav li {
+  color: #6b6b6b;
+  text-decoration: none;
+}
+
+.nav > li {
+  display: inline-block;
+  cursor: pointer;
+}
+.nav > li:hover {
+  background: #ebebeb;
+}
+
+
+
+

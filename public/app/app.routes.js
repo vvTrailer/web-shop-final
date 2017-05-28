@@ -15,5 +15,8 @@ app.config(function($routeProvider){
 		.when('/register', {
 			templateUrl: 'app/views/register.html',
 			controller: 'authController'
+		})
+		.when('/about', {
+			templateUrl: 'app/views/about.html'
 		});
 });
