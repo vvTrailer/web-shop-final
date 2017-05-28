@@ -4,8 +4,16 @@ var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser'); 	// get body-parser
 var morgan     = require('morgan'); 		// used to see requests
 var mongoose   = require('mongoose');
-var config 	   = require('./config'); // use it for later
 var path 	   = require('path'); // use it for later
+var config     = require('./config'); // use it for later
+var configSecret 	= {}; // use it for later
+
+try {
+	var configSecret = require('./config-secret'); // use it for later
+} catch (ex) {
+	configSecret["secret"] = process.env.SECRET;
+	configSecret["database"] = process.env.DATABASE;
+}
 
 
 // APP CONFIGURATION ==================
@@ -26,7 +34,7 @@ app.use(function(req, res, next) {
 app.use(morgan('dev'));
 
 // connect to our database (hosted on modulus.io)
-mongoose.connect(config.database); 
+mongoose.connect(configSecret.database); 
 
 // set static files location
 // used for requests that our frontend will make
@@ -36,8 +44,10 @@ app.use(express.static(__dirname + '/public'));
 // ====================================
 
 // API ROUTES ------------------------
-var apiRoutes = require('./app/routes/userRoutes')(app, express);
-app.use('/api', apiRoutes);
+var userRoutes = require('./app/routes/apiRoutes')(app, express);
+
+app.use('/api', userRoutes);
+
 
 // MAIN CATCHALL ROUTE --------------- 
 // SEND USERS TO FRONTEND ------------

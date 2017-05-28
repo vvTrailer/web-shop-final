@@ -1,0 +1,15 @@
+<div class="col-sm-6 col-md-4 col-md-offset-4">
+    <div class="account-wall">
+        <form class="form-signin" ng-submit="register()">
+	        <input type="email" ng-model="user.email" name="email" class="form-control" placeholder="Email" required autofocus>
+	        <input type="password" ng-model="user.password" name="password" class="form-control" placeholder="Password" required>
+<!-- 	        <input type="password" name="password2" class="form-control" placeholder="Repeat password" required> -->
+	        <input type="name" ng-model="user.name" name="name" class="form-control" placeholder="Full name" required autofocus>
+	        <input type="text" ng-model="user.address" name="address" class="form-control" placeholder="Address" required>
+	        <input type="text" ng-model="user.city" name="city" class="form-control" placeholder="City" required>
+	        <input type="text" ng-model="user.country" name="country" class="form-control last-control" placeholder="Country" required>
+            <p class="error-message" style="color: red;"> {{ error_message }}</p>
+	        <button class="btn btn-lg btn-primary btn-block btn-square" type="submit">Register</button>
+        </form>
+    </div>
+</div>
